@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Section from "@/components/sections/Section.astro";
+import Card from "../components/sections/Card.astro";
+---
+
+<BaseLayout>
+  <!-- Hero section -->
+  <Hero 
+    title="Welcome to Studio Zero" 
+    subtitle="Modular Astro + Tailwind starter kit"
+    cta="Get Started"
+  />
+
+  <!-- Section with some cards -->
+  <Section title="Our Services" content="Here are some of the things we offer.">
+    <div class="std-grid std-grid--smart mt-6">
+      <Card title="Web Design" text="Modern, mobile-friendly websites that bring in customers." />
+      <Card title="Email Setup" text="Professional email and templates for your brand." />
+      <Card title="Care Plans" text="Ongoing updates, monitoring, and support." />
+    </div>
+  </Section>
+</BaseLayout>

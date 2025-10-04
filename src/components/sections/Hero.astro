@@ -1,0 +1,9 @@
+---
+const { title = "Your Hero Title", subtitle = "Short description goes here", cta = "Get Started" } = Astro.props;
+---
+
+<section class="std-container text-center py-16">
+  <h1 class="text-4xl font-heading mb-4">{title}</h1>
+  <p class="text-lg text-gray-600 mb-6">{subtitle}</p>
+  <a href="/contact" class="std-btn">{cta}</a>
+</section>

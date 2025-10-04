@@ -1,0 +1,27 @@
+---
+import { siteConfig } from "@/config/site";
+
+const {
+  title = siteConfig.companyName,
+  description = "Modern websites built with Astro + Tailwind.",
+  url = "https://studiozerolab.com",
+  image = "/assets/hero-placeholder.jpg"
+} = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={url} />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
