@@ -1,0 +1,13 @@
+---
+import FeatureCard from "../ui/FeatureCard.astro";
+const { id, title = "Features", items = [] } = Astro.props;
+---
+
+<section id={id} class="bg-[var(--surface-alt,#F8FAFC)] border-t border-b border-line">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="text-3xl font-bold mb-8">{title}</h2>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((it) => <FeatureCard title={it.title} body={it.body} icon={it.icon} />)}
+    </div>
+  </div>
+</section>

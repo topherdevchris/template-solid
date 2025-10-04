@@ -1,18 +1,73 @@
 ---
-import { siteConfig } from "../config/site";
+import site from "../config/site";
+import MobileMenu from "./nav/MobileMenu.astro";
 ---
 
-<header class="w-full py-4 border-b border-gray-200">
-  <div class="std-container flex justify-between items-center">
-    <a href="/" class="text-lg font-bold">
-      {siteConfig.companyName}
+<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-line">
+  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-extrabold tracking-tight text-xl hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/30">
+      {site.name}
     </a>
-    <!-- Placeholder nav -->
-    <nav class="hidden md:flex gap-6">
-      <a href="/" class="hover:text-primary">Home</a>
-      <a href="/about" class="hover:text-primary">About</a>
-      <a href="/services" class="hover:text-primary">Services</a>
-      <a href="/contact" class="hover:text-primary">Contact</a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a class="hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30" href="/">Home</a>
+      <a class="hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30" href="/generic">Generic</a>
+      <a class="hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30" href="/elements">Elements</a>
+      <a class="px-4 py-2 rounded-md bg-primary text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/40" href="#contact">
+        Contact
+      </a>
     </nav>
+
+    <button
+      class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-line hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-menu-trigger>
+      <span class="sr-only">Open menu</span>
+      <!-- hamburger -->
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
+
+  <MobileMenu />
 </header>
+
+<script is:inline>
+  // Simple menu controller with focus return + ESC + overlay click
+  (function () {
+    const trigger = document.querySelector("[data-menu-trigger]");
+    const panel = document.querySelector("[data-menu-panel]");
+    const overlay = document.querySelector("[data-menu-overlay]");
+    let lastFocused = null;
+
+    function open() {
+      lastFocused = document.activeElement;
+      document.documentElement.classList.add("overflow-hidden");
+      panel?.classList.remove("translate-x-full");
+      overlay?.classList.remove("opacity-0", "pointer-events-none");
+      trigger?.setAttribute("aria-expanded", "true");
+      // focus the first focusable element inside panel
+      const first = panel?.querySelector("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      first && first.focus();
+    }
+
+    function close() {
+      document.documentElement.classList.remove("overflow-hidden");
+      panel?.classList.add("translate-x-full");
+      overlay?.classList.add("opacity-0", "pointer-events-none");
+      trigger?.setAttribute("aria-expanded", "false");
+      lastFocused && lastFocused.focus();
+    }
+
+    trigger?.addEventListener("click", open);
+    overlay?.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+
+    // Expose for panel close button
+    window.__closeMenu = close;
+  })();
+</script>

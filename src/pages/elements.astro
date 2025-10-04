@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SEOHead from "../components/SEOHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Section from "../components/ui/Section.astro";
+import site from "../config/site";
+---
+
+<BaseLayout>
+  <SEOHead title="Elements" description="Type, buttons, forms, and components" />
+  <Header />
+
+  <main id="main">
+    <Section as="section">
+      <h1 class="text-4xl font-bold mb-2">Elements</h1>
+      <p class="text-muted mb-8">Quick preview of common elements and styles.</p>
+
+      <div class="grid gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold mb-3">Typography</h2>
+          <p class="mb-2"><strong>Strong</strong> and <em>emphasis</em> text example.</p>
+          <p class="mb-2">Body copy sizing with comfortable line-height and spacing.</p>
+          <a href="#" class="inline-block px-5 py-2 rounded-md bg-primary text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/50">Primary Button</a>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-semibold mb-3">Form</h2>
+          <form class="grid gap-4 max-w-xl">
+            <label class="grid gap-1">
+              <span class="text-sm font-medium">Name</span>
+              <input class="border border-line rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="Jane Doe" />
+            </label>
+            <label class="grid gap-1">
+              <span class="text-sm font-medium">Email</span>
+              <input type="email" class="border border-line rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="you@example.com" />
+            </label>
+            <label class="grid gap-1">
+              <span class="text-sm font-medium">Message</span>
+              <textarea rows="4" class="border border-line rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="Say hello"></textarea>
+            </label>
+            <button class="justify-self-start px-5 py-2 rounded-md bg-primary text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/50">Send</button>
+          </form>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SEOHead from "../components/SEOHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Section from "../components/ui/Section.astro";
+import site from "../config/site";
+---
+
+<BaseLayout>
+  <SEOHead title="Generic Page" description={site.tagline} />
+  <Header />
+
+  <main id="main">
+    <Section as="section">
+      <h1 class="text-4xl font-bold mb-4">Generic Page</h1>
+      <p class="text-lg text-muted mb-6">
+        This is a simple content page to demonstrate headings, paragraphs, and lists.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-3">Section Heading</h2>
+      <p class="mb-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus
+        nulla non risus faucibus, a bibendum neque suscipit. Integer at consectetur nunc.
+      </p>
+
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Composable sections</li>
+        <li>Themeable tokens</li>
+        <li>Accessible defaults</li>
+      </ul>
+    </Section>
+  </main>
+
+  <Footer />
+</BaseLayout>

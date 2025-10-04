@@ -1,12 +1,49 @@
 ---
-import { siteConfig } from "@/config/site";
+import site from "../config/site";
 ---
 
-<footer class="w-full py-6 mt-12 border-t border-gray-200 text-sm text-gray-600">
-  <div class="std-container flex flex-col md:flex-row justify-between items-center gap-2">
-    <p>&copy; {new Date().getFullYear()} {siteConfig.companyName}</p>
-    <p>
-      Made by <a href="https://studiozerolab.com" class="text-primary hover:underline">Studio Zero</a>
-    </p>
+<footer class="mt-20 border-t border-line bg-[var(--surface-alt,#F8FAFC)]">
+  <div class="mx-auto max-w-6xl px-6 py-12 grid gap-10 md:grid-cols-3">
+    <div class="space-y-2">
+      <div class="font-extrabold tracking-tight text-xl">{site.name}</div>
+      <p class="text-sm text-muted">{site.tagline}</p>
+    </div>
+
+    <div class="text-sm space-y-1">
+      <div class="font-semibold mb-1">Contact</div>
+      {site.email && (
+        <div>
+          <span class="text-muted">Email:</span>
+          <a class="ml-2 text-primary underline underline-offset-2" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      )}
+      {site.phone && (
+        <div>
+          <span class="text-muted">Phone:</span>
+          <a class="ml-2 text-primary underline underline-offset-2" href={`tel:${site.phone}`}>{site.phone}</a>
+        </div>
+      )}
+      {site.address && <div><span class="text-muted">Address:</span> <span class="ml-2">{site.address}</span></div>}
+    </div>
+
+    <div class="text-sm">
+      <div class="font-semibold mb-2">Follow</div>
+      <div class="flex items-center gap-3">
+        {site.socials?.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center w-9 h-9 rounded-md border border-line hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30"
+             aria-label={s.label}>
+            {s.icon ?? "↗"}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-line">
+    <div class="mx-auto max-w-6xl px-6 py-4 text-xs text-muted flex items-center justify-between">
+      <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+      <a href="/" class="hover:text-primary">Made with Studio Zero</a>
+    </div>
   </div>
 </footer>

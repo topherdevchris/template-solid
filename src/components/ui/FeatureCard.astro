@@ -1,0 +1,9 @@
+---
+const { title, body, icon } = Astro.props;
+---
+
+<article class="rounded-lg border border-line bg-white p-6 shadow-sm hover:shadow-md transition-shadow focus-within:shadow-md">
+  <div class="mb-4 text-3xl" aria-hidden="true">{icon ?? "★"}</div>
+  <h3 class="text-xl font-semibold mb-2">{title}</h3>
+  <p class="text-muted">{body}</p>
+</article>

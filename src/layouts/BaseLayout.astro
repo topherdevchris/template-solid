@@ -1,23 +1,17 @@
 ---
-import "@/styles/global.css";
+import "../styles/global.css";
 
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import SEOHead from "../layouts/SEOHead.astro";
+const { HTMLAttributes = {} } = Astro.props;
 ---
-
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-<SEOHead />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {Astro.slots.has("head") && <slot name="head" />}
   </head>
-  <body class="font-body text-gray-800 bg-white">
-    <Header />
-    <main class="std-container">
-      <slot /> <!-- page-specific content -->
-    </main>
-    <Footer />
+  <body class="antialiased text-text bg-white selection:bg-primary/10 selection:text-text">
+    <slot />
+    {/* Scripts slot if needed */}
+    {Astro.slots.has("scripts") && <slot name="scripts" />}
   </body>
 </html>

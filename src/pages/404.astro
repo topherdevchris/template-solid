@@ -1,13 +1,25 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SEOHead from "../components/SEOHead.astro";
 ---
 
 <BaseLayout>
-  <section class="std-container text-center py-20">
-    <h1 class="text-6xl font-heading text-primary mb-6">404</h1>
-    <p class="text-lg text-gray-600 mb-8">
-      Oops! The page you're looking for doesn't exist.
-    </p>
-    <a href="/" class="std-btn">Go Home</a>
-  </section>
+  <SEOHead title="Page not found" description="The page you’re looking for doesn’t exist." />
+  <Header />
+
+  <main id="main" class="min-h-[60vh] flex items-center">
+    <section class="mx-auto max-w-3xl text-center px-6">
+      <h1 class="text-6xl font-extrabold mb-4 tracking-tight">404</h1>
+      <p class="text-lg text-muted mb-8">
+        Oops — we couldn’t find that page. It may have been moved or deleted.
+      </p>
+      <a href="/" class="inline-block px-6 py-3 rounded-md bg-primary text-white font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/50">
+        Go Home
+      </a>
+    </section>
+  </main>
+
+  <Footer />
 </BaseLayout>
